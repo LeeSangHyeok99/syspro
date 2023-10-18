@@ -7,14 +7,14 @@ int main(int argc, char* argv[])
 	
 	if (argc!= 2) {
 		fprintf(stderr, "How to use: %s FileName\n", argv[0]);
-		exit(1);
+		return 1;
 	}
 
-	fp = fopen(argv[1], "wb");
+	fp = fopen(argv[1], "w");
 	printf("%-9s %-7s %-4s\n", "StudentID", "Name", "Score");
-	while (scanf("%d %s %d", &rec.id, rec.name, &rec.score) == 3)
-		fwrite(&rec, sizeof(rec), 1, fp);
+	while (scanf("%d %s %hd", &rec.id, rec.name, &rec.score) == 3)
+		fprintf(fp,"%d %s %d", rec.id, rec.name, rec.score);
 	fclose(fp);
-	exit(0);
+	return 0;
 }
 
